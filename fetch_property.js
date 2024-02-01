@@ -10,7 +10,7 @@ router.get('/:login_id', async (req, res) => {
         if (loginId.startsWith(':')) {
             loginId = loginId.substring(1); // Remove the first character (the colon)
           }
-          console.log(loginId);
+
 
 
         // Ensure login_id is provided

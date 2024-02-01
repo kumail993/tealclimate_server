@@ -65,7 +65,7 @@ router.post('/', async (req, res) => {
                       .otp {
                         font-weight: bold;
                         font-size: 28px;
-                        color: #0d47a1; /* Dark Blue */
+                        color: #008080; /* Teal */
                         text-align: center;
                         margin: 20px 0;
                       }
@@ -84,7 +84,7 @@ router.post('/', async (req, res) => {
                       <div class="header">Verification Email</div>
                       <div class="info">
                         Hello, ${email}!<br>
-                        We're delighted to welcome you to our Hostel-hunt community.
+                        We're delighted to welcome you to our TealClimate community.
                       </div>
                       <div class="otp">${otp}</div>
                       <div class="info">

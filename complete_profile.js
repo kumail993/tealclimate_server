@@ -5,7 +5,8 @@ const db = require('./db.js');
 
 router.post('/', async (req, res) => {
   try {
-    const { loginId, user_name, user_ph_no, user_gender, property_name, country, state, city, area } = req.body;
+    const { loginId, user_name, user_ph_no, user_gender, property_name, country, state, city, area,model_year,make,model,engine_size,transmission,fuel_type } = req.body;
+    console.log(model_year);
 
     const updateQuery = `
       UPDATE users
@@ -41,6 +42,24 @@ router.post('/', async (req, res) => {
       WHERE login_id = $1
     `;
     await db.query(updateProfileStatusQuery, [loginId]);
+
+    const updateVehicleQuery = `
+      UPDATE vehicle 
+      SET make = $1, model = $2, engine_size = $3, transmission = $4, fuel_type = $5, model_year = $6 
+      WHERE login_id = $7
+      RETURNING id
+    `;
+
+    const vehicleUpdateResult = await db.query(updateVehicleQuery, [
+      make,
+      model,
+      engine_size,
+      transmission,
+      fuel_type,
+      model_year,
+      loginId,
+    ]);
+
 
     res.status(200).json({ success: true, user_id: userId, property_id: updatedPropertyId });
   } catch (error) {

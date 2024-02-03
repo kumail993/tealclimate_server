@@ -119,6 +119,8 @@ router.post('/', async (req, res) => {
     await db.query(userSqlQuery, [loginId,]);
     const propertySqlQuery = 'INSERT INTO property(login_id) VALUES ($1)'
     await db.query(propertySqlQuery, [loginId,]);
+    const vehicleSqlQuery = "INSERT INTO vehicle(login_id) VALUES ($1)"
+    await db.query(vehicleSqlQuery,[loginId]);
 
 
     return res.status(201).json({ success: true, message: 'Registration successful' });

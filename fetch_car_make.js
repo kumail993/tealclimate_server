@@ -9,7 +9,7 @@ router.get('/:model_year', async (req, res) => {
         model_year = model_year.substring(1); // Remove the first character (the colon)
       }
     try {
-        const makeFetchQuery = 'SELECT DISTINCT make FROM cars WHERE model_year = $1';
+        const makeFetchQuery = 'SELECT DISTINCT make FROM car_database WHERE model_year = $1';
         const value = [model_year]
         
         // Assuming your db module has a method to execute queries
@@ -17,9 +17,6 @@ router.get('/:model_year', async (req, res) => {
 
         // Extract only the model_year values from the rows array
         const make = result.rows.map(row => row.make);
-
-        const manuallyAddedElement = 'Enter Make';
-        make.unshift(manuallyAddedElement);
 
         // Send the fetched data as a JSON response
         res.status(200).json({ make });

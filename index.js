@@ -22,6 +22,9 @@ const CarTrnasmissionseRouter = require('./fetch_car_transmission.js');
 const CarFuelTypeRouter = require('./fetch_fuel_type.js');
 const CountryRouter = require('./fetch_countries.js');
 const RegionRouter = require('./fetch_regions.js');
+const UserCarsRouter = require('./fetch_user_cars.js');
+const FetchVacationCountriesRouter = require('./fetch_vacation_countries.js');
+const CarCarbonEmissiosRouter = require('./car_carbon emission.js');
 
 app.use('/tealclimate/register',RegisterRouter);
 app.use('/tealclimate/otp',OTPVerificationRouter);
@@ -38,6 +41,11 @@ app.use('/tealclimate/carTransmissions',CarTrnasmissionseRouter);
 app.use('/tealclimate/carFuel',CarFuelTypeRouter);
 app.use('/tealclimate/country',CountryRouter);
 app.use('/tealclimate/region',RegionRouter);
+app.use('/tealclimate/fetchUserCars',UserCarsRouter);
+app.use('/tealclimate/fetchVacationCountries',FetchVacationCountriesRouter);
+app.use('/tealclimate/carCarbonEmission',CarCarbonEmissiosRouter);
+
+
 
 
 

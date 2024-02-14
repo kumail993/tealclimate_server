@@ -26,8 +26,11 @@ const UserCarsRouter = require('./fetch_user_cars.js');
 const FetchVacationCountriesRouter = require('./fetch_vacation_countries.js');
 const CarCarbonEmissiosRouter = require('./car_carbon emission.js');
 const PassengerTypeRouter = require('./fetch_pessenger_type.js');
+const RailTypeRouter = require('./fetch_rail_type.js');
 const HeatAndSteamCarbonEmissionsRouter = require('./heat_steam_carbon_emissions.js');
 const WaterCarbonEmissionsRouter = require('./water_carbon_emissions.js');
+const HotelStayEmissionsRouter = require('./hotel_stay_emissions.js');
+const FerryEmissionsRouter = require('./ferry_carbon_emissions.js');
 
 app.use('/tealclimate/register',RegisterRouter);
 app.use('/tealclimate/otp',OTPVerificationRouter);
@@ -48,8 +51,11 @@ app.use('/tealclimate/fetchUserCars',UserCarsRouter);
 app.use('/tealclimate/fetchVacationCountries',FetchVacationCountriesRouter);
 app.use('/tealclimate/carCarbonEmission',CarCarbonEmissiosRouter);
 app.use('/tealclimate/passengerType',PassengerTypeRouter);
+app.use('/tealclimate/railType',RailTypeRouter);
 app.use('/tealclimate/heatAndSteam',HeatAndSteamCarbonEmissionsRouter);
 app.use('/tealclimate/water',WaterCarbonEmissionsRouter);
+app.use('/tealclimate/hotelStay',HotelStayEmissionsRouter);
+app.use('/tealclimate/ferry',FerryEmissionsRouter);
 
 
 

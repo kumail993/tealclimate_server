@@ -33,6 +33,9 @@ const HotelStayEmissionsRouter = require('./hotel_stay_emissions.js');
 const FerryEmissionsRouter = require('./ferry_carbon_emissions.js');
 const MealCategoriesRouter = require('./fetch_meal_categories.js');
 const RailEmissionRouter = require('./rail_carbon_emission.js');
+const MeallEmissionRouter = require('./meal_carbon_emission.js');
+const BusEmissionRouter = require('./bus_carbon_emissions.js');
+const BusTypesRouter = require('./fetch_bus_types.js');
 
 
 app.use('/tealclimate/register',RegisterRouter);
@@ -61,6 +64,9 @@ app.use('/tealclimate/hotelStay',HotelStayEmissionsRouter);
 app.use('/tealclimate/ferry',FerryEmissionsRouter);
 app.use('/tealclimate/mealCategories',MealCategoriesRouter);
 app.use('/tealclimate/rail',RailEmissionRouter);
+app.use('/tealclimate/meal',MeallEmissionRouter);
+app.use('/tealclimate/bus',BusEmissionRouter);
+app.use('/tealclimate/busTypes',BusTypesRouter);
 
 
 

@@ -36,6 +36,13 @@ const RailEmissionRouter = require('./rail_carbon_emission.js');
 const MeallEmissionRouter = require('./meal_carbon_emission.js');
 const BusEmissionRouter = require('./bus_carbon_emissions.js');
 const BusTypesRouter = require('./fetch_bus_types.js');
+const RentalCarsTypesRouter = require('./car_rental_categories.js');
+const RentalCarStagesRouter = require('./car_rental_types.js');
+const RentalCarFuelRouter = require('./rental_car_fuel.js');
+const RentalCarEmissionRouter = require('./rental_car_carbon_emissions.js');
+const TaxiEmissionRouter = require('./taxi_carbon_emission.js');
+
+
 
 
 app.use('/tealclimate/register',RegisterRouter);
@@ -67,6 +74,12 @@ app.use('/tealclimate/rail',RailEmissionRouter);
 app.use('/tealclimate/meal',MeallEmissionRouter);
 app.use('/tealclimate/bus',BusEmissionRouter);
 app.use('/tealclimate/busTypes',BusTypesRouter);
+app.use('/tealclimate/carClassification',RentalCarsTypesRouter);
+app.use('/tealclimate/carTypes',RentalCarStagesRouter);
+app.use('/tealclimate/carFuel',RentalCarFuelRouter);
+app.use('/tealclimate/rentalCar',RentalCarEmissionRouter);
+app.use('/tealclimate/taxi',TaxiEmissionRouter);
+
 
 
 

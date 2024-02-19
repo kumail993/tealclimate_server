@@ -57,7 +57,7 @@ router.post('/', async (req, res) => {
                 return res.status(500).send('Error inserting kgco2e data');
             } else {
                 // The INSERT query was successful.
-                stage=(stage+': '+kgco2e);
+                
                 console.log(stage)
                 res.status(200).json({ success: true, factor:factor});
  

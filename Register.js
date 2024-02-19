@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('./db.js');
 const otpGenerator = require('otp-generator');
+const bcrypt = require('bcrypt'); 
 const nodemailer = require('nodemailer');
 
 
@@ -21,6 +22,7 @@ router.post('/', async (req, res) => {
 
     // Generate OTP for User Authentication
     const otp = otpGenerator.generate(6, { digits: true, alphabets: false, upperCaseAlphabets: false, lowerCaseAlphabets: false, specialChars: false });
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     // Send OTP to the given Email
     const transporter = nodemailer.createTransport({
@@ -104,7 +106,7 @@ router.post('/', async (req, res) => {
 
     // Insert into login table
     const loginSqlQuery = 'INSERT INTO user_credentials(user_email, user_password, otp, created_at, active_status,profile_status) VALUES ($1, $2, $3, NOW(), 0, 0) RETURNING login_id';
-    const loginResult = await db.query(loginSqlQuery, [email, password, otp]);
+    const loginResult = await db.query(loginSqlQuery, [email, hashedPassword, otp]);
 
     // Check if loginResult.rows is not empty or undefined
     if (!loginResult.rows || loginResult.rows.length === 0 || !loginResult.rows[0].login_id) {

@@ -8,7 +8,7 @@ router.post('/', async (req, res) => {
 
         const quantity = req.body.quantity;
         const userid=req.body.userid;
-        const month=req.body.userid;
+        const month=req.body.month;
         const year= req.body.year;
        
         

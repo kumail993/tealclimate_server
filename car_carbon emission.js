@@ -51,7 +51,7 @@ router.post('/', async (req, res) => {
         model_year=data2.model_year;
 
 
-        scope='scope 2';
+        scope='Scope 1';
         category='vehicle';
         sub_category=model;
         satge='Fuel';

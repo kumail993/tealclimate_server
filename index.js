@@ -41,7 +41,12 @@ const RentalCarStagesRouter = require('./car_rental_types.js');
 const RentalCarFuelRouter = require('./rental_car_fuel.js');
 const RentalCarEmissionRouter = require('./rental_car_carbon_emissions.js');
 const TaxiEmissionRouter = require('./taxi_carbon_emission.js');
-
+const FetchAirportsRouter = require('./fetch_airport.js');
+const FetchAirlineClassRouter = require('./fetch_airline_class.js');
+const GsCarbonEmissionRouter = require('./gas_carbon_emissions.js');
+const AirlineEmissionRouter = require('./airline_carbon_emission.js');
+const TotalGHGEmissionRouter = require('./total_ghg_emissions.js');
+const ScopeGHGEmissionRouter = require('./scope_ghg_emissions.js');
 
 
 
@@ -79,6 +84,13 @@ app.use('/tealclimate/carTypes',RentalCarStagesRouter);
 app.use('/tealclimate/carFuel',RentalCarFuelRouter);
 app.use('/tealclimate/rentalCar',RentalCarEmissionRouter);
 app.use('/tealclimate/taxi',TaxiEmissionRouter);
+app.use('/tealclimate/airport',FetchAirportsRouter);
+app.use('/tealclimate/airlineClass',FetchAirlineClassRouter);
+app.use('/tealclimate/gas',GsCarbonEmissionRouter);
+app.use('/tealclimate/airline',AirlineEmissionRouter);
+app.use('/tealclimate/totalGHG',TotalGHGEmissionRouter);
+app.use('/tealclimate/scopeGHG',ScopeGHGEmissionRouter);
+
 
 
 

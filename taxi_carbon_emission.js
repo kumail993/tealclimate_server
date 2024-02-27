@@ -37,6 +37,7 @@ router.post('/', async (req, res) => {
         factor= req.body.factor;
         kgco2e=0.20806;
         category='Vacation'
+        mid_category = 'travel'
         placeholder=''
         sub_category='Taxi'
         subCategory='Taxi'
@@ -47,8 +48,8 @@ router.post('/', async (req, res) => {
         year='null';
  
  
-        const insertQuery = 'INSERT INTO carbon_emissions (scope,category,sub_category,stage,country,region,placeholder,uom,ghgunit,ghg_conversion_factor,kgco2e,login_id,user_name,month,year) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)';
-        const insertValues = [scope, category, sub_category, stage, country, region, placeholder, uom, ghgunit, kgco2e,factor, userid, username, month, year];
+        const insertQuery = 'INSERT INTO carbon_emissions (scope,category,mid_category,sub_category,stage,country,region,placeholder,uom,ghgunit,ghg_conversion_factor,kgco2e,login_id,user_name,month,year) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16)';
+        const insertValues = [scope, category,mid_category, sub_category, stage, country, region, placeholder, uom, ghgunit, kgco2e,factor, userid, username, month, year];
          
        
         db.query(insertQuery, insertValues, (insertError, insertResult) => {

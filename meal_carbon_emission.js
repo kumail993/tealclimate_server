@@ -63,14 +63,15 @@ router.post('/', async (req, res) => {
                         if (successfulInsertions === result.rows.length) {
                             const scope = data.scope;
                             const category = 'Vacation';
+                            const mid_category = 'meal';
                             const sub_category = 'Meal';
                             const stage = 'Meal'; // Is this correct?
                             const placeholder = data.placeholder;
                             const uom = data.uom;
                             const ghgunit = data.ghgunit;
  
-                            const insertQuery = 'INSERT INTO carbon_emissions (scope,category,sub_category,stage,country,region,placeholder,uom,ghgunit,ghg_conversion_factor,kgco2e,login_id,user_name,month,year) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)';
-                            const insertValues = [scope, category, sub_category, stage, country, region, placeholder, uom, ghgunit, ghg_conversion_factor, total_kgco2e, userid, username, month, year];
+                            const insertQuery = 'INSERT INTO carbon_emissions (scope,category,mid_category,sub_category,stage,country,region,placeholder,uom,ghgunit,ghg_conversion_factor,kgco2e,login_id,user_name,month,year) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16)';
+                            const insertValues = [scope, category,mid_category, sub_category, stage, country, region, placeholder, uom, ghgunit, ghg_conversion_factor, total_kgco2e, userid, username, month, year];
                             msgs=total_kgco2e+' '+stage
        
                             db.query(insertQuery, insertValues, (insertError, insertResult) => {

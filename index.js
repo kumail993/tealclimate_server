@@ -47,6 +47,8 @@ const GsCarbonEmissionRouter = require('./gas_carbon_emissions.js');
 const AirlineEmissionRouter = require('./airline_carbon_emission.js');
 const TotalGHGEmissionRouter = require('./total_ghg_emissions.js');
 const ScopeGHGEmissionRouter = require('./scope_ghg_emissions.js');
+const VacationGHGEmissionRouter = require('./vacation_categories_emission.js');
+const HouseholdGHGEmissionRouter = require('./household_category_emissions.js');
 
 
 
@@ -90,6 +92,9 @@ app.use('/tealclimate/gas',GsCarbonEmissionRouter);
 app.use('/tealclimate/airline',AirlineEmissionRouter);
 app.use('/tealclimate/totalGHG',TotalGHGEmissionRouter);
 app.use('/tealclimate/scopeGHG',ScopeGHGEmissionRouter);
+app.use('/tealclimate/vacationGHG',VacationGHGEmissionRouter);
+app.use('/tealclimate/householdGHG',HouseholdGHGEmissionRouter);
+
 
 
 

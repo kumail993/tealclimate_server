@@ -73,9 +73,9 @@ router.post('/', async (req, res) => {
 
                 console.log('hello',kgco2e);
                 // sub_category,
-                const insertQuery = 'INSERT INTO carbon_emissions (scope,category,sub_category,stage,country,region,placeholder,uom,ghgunit,ghg_conversion_factor,kgco2e,login_id,user_name) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13)';
+                const insertQuery = 'INSERT INTO carbon_emissions (scope,category,mid_category,sub_category,stage,country,region,placeholder,uom,ghgunit,ghg_conversion_factor,kgco2e,login_id,user_name) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14)';
 
-                const insertValues = [scope,category,sub_category,satge,country,region,placeholder,uom,ghgunit,datas.co2e_kg_km,kgco2e,userid,username];
+                const insertValues = [scope,category,sub_category,sub_category,satge,country,region,placeholder,uom,ghgunit,datas.co2e_kg_km,kgco2e,userid,username];
 
                 db.query(insertQuery, insertValues, (insertError, insertResult) => {
                     if (insertError) {

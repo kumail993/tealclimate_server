@@ -14,7 +14,10 @@ router.get('/:userid', async (req, res) => {
             GROUP BY scope;
         `;
         const categoryResult = await db.query(categoryQuery, [userid]);
-        const categories = categoryResult.rows;
+        const categories = categoryResult.rows.map(category => ({
+            ...category,
+            total_kgco2e: roundToInteger(category.total_kgco2e) // Convert to integer
+        }));
 
         // Fetching total sum of kgco2e for a specific userid
         const totalQuery = `
@@ -23,26 +26,23 @@ router.get('/:userid', async (req, res) => {
             WHERE login_id = $1;
         `;
         const totalResult = await db.query(totalQuery, [userid]);
-        const totalKgco2e = totalResult.rows[0].total_kgco2e;
+        const totalKgco2e = roundToInteger(totalResult.rows[0].total_kgco2e); // Convert to integer
 
-        // Calculate percentage for each category
-        const categoriesWithPercentage = categories.map(scope => ({
-            ...scope,
-            percentage: parseFloat(((scope.total_kgco2e / totalKgco2e) * 100).toFixed(2))
+        // Calculate percentage for each category and convert to integers
+        const categoriesWithPercentage = categories.map(category => ({
+            ...category,
+            percentage: roundToInteger((category.total_kgco2e / totalKgco2e) * 100)
         }));
 
-        // Sort categories by scope
-        categoriesWithPercentage.sort((a, b) => {
-            if (a.scope < b.scope) return -1;
-            if (a.scope > b.scope) return 1;
-            return 0;
-        });
-
-        res.json({ scopes: categoriesWithPercentage, totalKgco2e });
+        res.json({ categories: categoriesWithPercentage, totalKgco2e });
     } catch (error) {
         console.error('Error:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
+function roundToInteger(number) {
+    return Math.round(number);
+}
 
 module.exports = router;

@@ -64,6 +64,7 @@ router.post('/', async (req, res) => {
                 const datas = result.rows;
 
                 category='household';
+                mid_category = "heat and steam";
            
 
 
@@ -71,8 +72,8 @@ router.post('/', async (req, res) => {
                 
                 datas.forEach(element => {
                     const kgco2e = element.ghg_conversion_factor * quantity;
-                    const insertQuery = 'INSERT INTO carbon_emissions (scope,category,sub_category,stage,country,region,placeholder,uom,ghgunit,ghg_conversion_factor,kgco2e,login_id,user_name,month,year) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)';
-                    const insertValues = [element.scope,category,element.category,element.stage,country,region,element.placeholder,element.uom,element.ghgunit,element.ghg_conversion_factor,kgco2e,userid,username,month,year];
+                    const insertQuery = 'INSERT INTO carbon_emissions (scope,category,mid_category,sub_category,stage,country,region,placeholder,uom,ghgunit,ghg_conversion_factor,kgco2e,login_id,user_name,month,year) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16)';
+                    const insertValues = [element.scope,category,mid_category,element.category,element.stage,country,region,element.placeholder,element.uom,element.ghgunit,element.ghg_conversion_factor,kgco2e,userid,username,month,year];
                     db.query(insertQuery, insertValues, (insertError, insertResult) => {
                         if (insertError) {
                             console.error('Error executing INSERT query:', insertError);

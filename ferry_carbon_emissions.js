@@ -99,6 +99,7 @@ router.post('/', async (req, res) => {
                
                     const scope = element.scope;
                     const category = 'Vacation';
+                    const mid_category= 'travel';
                     const sub_category = element.category;
                     const stage = element.stage;
                     placeholder = element.placeholder;
@@ -115,8 +116,8 @@ router.post('/', async (req, res) => {
                         kgco2e = WTT_business_travel_sea;
                     }
                
-                    const insertQuery = 'INSERT INTO carbon_emissions (scope,category,sub_category,stage,country,region,placeholder,uom,ghgunit,ghg_conversion_factor,kgco2e,login_id,user_name,month,year) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)';
-                    const insertValues = [scope, category, sub_category, stage, country, region, placeholder, uom, ghgunit, ghg_conversion_factor, kgco2e, userid, username, month, year];
+                    const insertQuery = 'INSERT INTO carbon_emissions (scope,category,mid_category,sub_category,stage,country,region,placeholder,uom,ghgunit,ghg_conversion_factor,kgco2e,login_id,user_name,month,year) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16)';
+                    const insertValues = [scope, category,mid_category, sub_category, stage, country, region, placeholder, uom, ghgunit, ghg_conversion_factor, kgco2e, userid, username, month, year];
                
                     db.query(insertQuery, insertValues, (insertError, insertResult) => {
                         if (insertError) {

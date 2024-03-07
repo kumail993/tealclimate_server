@@ -1,7 +1,6 @@
 {
-  "name": "server",
+  "name": "main",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -25,5 +24,7 @@
     "phpass": "^0.1.1",
     "sequelize": "^6.33.0",
     "sequelize-cli": "^6.6.1"
-  }
+  },
+  "devDependencies": {},
+  "description": ""
 }

@@ -12,6 +12,7 @@ const LoginRouter = require('./login');
 const OTPVerificationRouter = require('./OTP_verification.js');
 const CompletePRofileRouter = require('./complete_profile.js');
 const FetchPropertyRouter = require('./fetch_property.js');
+const UserCarsDetailsDetails = require('./fetch_user_car_details.js');
 const FetchUserRouter = require('./fetchuser.js');
 const ElectricityEmissionRouter = require('./electricity_carbon_emmission_calculator.js');
 const CarModelRouter = require('./fetch_car_model_years.js');
@@ -96,6 +97,7 @@ app.use('/tealclimate/scopeGHG',ScopeGHGEmissionRouter);
 app.use('/tealclimate/vacationGHG',VacationGHGEmissionRouter);
 app.use('/tealclimate/householdGHG',HouseholdGHGEmissionRouter);
 app.use('/tealclimate/monthsGHG',MonthsGHGEmissionRouter);
+app.use('/tealclimate/carDetails',UserCarsDetailsDetails);
 
 
 

@@ -19,7 +19,7 @@ router.get('/:login_id', async (req, res) => {
         }
 
         // Fetch data from the property table
-        const FetchPropertyQuery = 'SELECT * FROM property WHERE login_id = $1';
+        const FetchPropertyQuery = 'SELECT * FROM vehicle WHERE login_id = $1';
         const  {rows} = await db.query(FetchPropertyQuery, [loginId]);
 
         // Check if any rows were returned

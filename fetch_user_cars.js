@@ -20,7 +20,7 @@ router.get('/:login_id', async (req, res) => {
         }
 
         // Fetch data from the vehicle table
-        const fetchCarsQuery = 'SELECT make, model FROM vehicle WHERE login_id = $1';
+        const fetchCarsQuery = 'SELECT car_name FROM vehicle WHERE login_id = $1';
         const { rows } = await db.query(fetchCarsQuery, [loginId]);
 
         // Check if any rows were returned
@@ -29,8 +29,8 @@ router.get('/:login_id', async (req, res) => {
         }
 
         // Concatenate make and model, and respond with the new array
-        const vehicles = rows.map(row => `${row.make} ${row.model}`);
-        res.json({ vehicles }); // Send the concatenated make and model as response
+        // const vehicles = rows.map(row => `${row.make} ${row.model}`);
+        res.json({ rows }); // Send the concatenated make and model as response
     } catch (error) {
         console.error('Error fetching data from vehicle table:', error);
         res.status(500).json({ error: 'Internal server error' });

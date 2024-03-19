@@ -5,7 +5,7 @@ const db = require('./db.js');
 
 router.post('/', async (req, res) => {
   try {
-    const { loginId, user_name, user_ph_no, user_gender, property_name, country, state, city, area,model_year,make,model,engine_size,transmission,fuel_type } = req.body;
+    const { loginId, user_name, user_ph_no, user_gender, property_name, country, state, city, area,model_year,make,model,engine_size,transmission,fuel_type,car_name } = req.body;
     console.log(model_year);
 
     const updateQuery = `
@@ -45,8 +45,8 @@ router.post('/', async (req, res) => {
 
     const updateVehicleQuery = `
       UPDATE vehicle 
-      SET make = $1, model = $2, engine_size = $3, transmission = $4, fuel_type = $5, model_year = $6 
-      WHERE login_id = $7
+      SET make = $1, model = $2, engine_size = $3, transmission = $4, fuel_type = $5, model_year = $6, car_name = $7 
+      WHERE login_id = $8
       RETURNING id
     `;
 
@@ -57,6 +57,7 @@ router.post('/', async (req, res) => {
       transmission,
       fuel_type,
       model_year,
+      car_name,
       loginId,
     ]);
 

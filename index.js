@@ -113,5 +113,5 @@ app.use('/tealclimate/carDetails',UserCarsDetailsDetails);
 
 
 
-app.listen(5433,()=> console.log('your server is running on port 3000'))
+app.listen(process.env.DB_PORT,()=> console.log('your server is running on port + '+process.env.DB_PORT))
 

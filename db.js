@@ -17,6 +17,9 @@ const pool = new Pool({
   database: dbDatabase,
   password: dbPass,
   port: 5432, // PostgreSQL default port
+  ssl: {
+    rejectUnauthorized: false, // Set to true to reject unauthorized connections
+},
 });
 
 // // Listen for the 'connect' event

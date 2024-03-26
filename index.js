@@ -51,6 +51,7 @@ const ScopeGHGEmissionRouter = require('./scope_ghg_emissions.js');
 const VacationGHGEmissionRouter = require('./vacation_categories_emission.js');
 const HouseholdGHGEmissionRouter = require('./household_category_emissions.js');
 const MonthsGHGEmissionRouter = require('./month_ghg_emissions.js');
+const UpdatePropertyRouter = require('./update_property.js');
 
 
 
@@ -98,6 +99,7 @@ app.use('/tealclimate/vacationGHG',VacationGHGEmissionRouter);
 app.use('/tealclimate/householdGHG',HouseholdGHGEmissionRouter);
 app.use('/tealclimate/monthsGHG',MonthsGHGEmissionRouter);
 app.use('/tealclimate/carDetails',UserCarsDetailsDetails);
+app.use('/tealclimate/updateProperty',UpdatePropertyRouter);
 
 
 

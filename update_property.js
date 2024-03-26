@@ -27,9 +27,9 @@ router.post('/', async (req, res) => {
     // Update profile_status to 1 in user_credentials table
 
 
-    res.status(200).json({ success: true, user_id: userId, property_id: updatedPropertyId });
+    res.status(200).json({ success: true, property_id: updatedPropertyId });
   } catch (error) {
-    console.error('Error updating user, property, and profile status:', error);
+    console.error('Error updating user, property:', error);
     res.status(500).json({ success: false, error: 'Internal Server Error' });
   }
 });

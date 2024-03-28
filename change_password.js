@@ -33,7 +33,7 @@ router.post('/', async (req, res) => {
     const newPasswordHash = await bcrypt.hash(newPassword, 10);
 
     // Update the password in the database
-    await db.query('UPDATE user_credentials SET password = $1 WHERE login_id = $2', [newPasswordHash, loginId]);
+    await db.query('UPDATE user_credentials SET user_password = $1 WHERE login_id = $2', [newPasswordHash, loginId]);
 
     return res.status(200).json({ success: true, message: 'Password changed successfully' });
   } catch (error) {

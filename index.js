@@ -53,6 +53,7 @@ const HouseholdGHGEmissionRouter = require('./household_category_emissions.js');
 const MonthsGHGEmissionRouter = require('./month_ghg_emissions.js');
 const UpdatePropertyRouter = require('./update_property.js');
 const UpdateCarRouter = require('./update_car.js');
+const ChangePasswordRouter = require('./change_password.js');
 
 
 
@@ -102,19 +103,7 @@ app.use('/tealclimate/monthsGHG',MonthsGHGEmissionRouter);
 app.use('/tealclimate/carDetails',UserCarsDetailsDetails);
 app.use('/tealclimate/updateProperty',UpdatePropertyRouter);
 app.use('/tealclimate/updateCar',UpdateCarRouter);
-
-
-
-
-
-
-
-
-
-
-
-
-
+app.use('/tealclimate/changePassword',ChangePasswordRouter);
 
 
 app.listen(process.env.DB_PORT,()=> console.log('your server is running on port + '+process.env.DB_PORT))

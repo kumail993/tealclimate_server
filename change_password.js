@@ -19,8 +19,8 @@ router.post('/', async (req, res) => {
       return res.status(400).json({ success: false, message: 'Invalid user ID' });
     }
     const storedPasswordHash = user.rows[0].user_password;
-    const oldPasswordHash = await bcrypt.hash(oldPassword, 10);
-    console.log(oldPasswordHash, storedPasswordHash);
+    //const oldPasswordHash = await bcrypt.hash(oldPassword, 10);
+    console.log(oldPassword, storedPasswordHash);
 
     // Verify oldPassword against stored password hash
     const passwordMatch = await bcrypt.compare(oldPasswordHash, storedPasswordHash);

@@ -6,7 +6,7 @@ const db = require('./db.js');
 router.post('/', async (req, res) => {
   try {
     const { loginId, oldPassword, newPassword } = req.body;
-    print(loginId, oldPassword, newPassword);
+    console.log(loginId, oldPassword, newPassword);
 
     // Check if loginId, oldPassword, and newPassword are provided
     if (!loginId || !oldPassword || !newPassword) {

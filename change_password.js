@@ -23,7 +23,7 @@ router.post('/', async (req, res) => {
     console.log(oldPassword, storedPasswordHash);
 
     // Verify oldPassword against stored password hash
-    const passwordMatch = await bcrypt.compare(oldPasswordHash, storedPasswordHash);
+    const passwordMatch = await bcrypt.compare(oldPassword, storedPasswordHash);
 
     if (!passwordMatch) {
       return res.status(400).json({ success: false, message: 'Incorrect old password' });

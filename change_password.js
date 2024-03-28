@@ -20,6 +20,7 @@ router.post('/', async (req, res) => {
     }
     const storedPasswordHash = user.rows[0].user_password;
     const oldPasswordHash = await bcrypt.hash(oldPassword, 10);
+    console.log(oldPasswordHash, storedPasswordHash);
 
     // Verify oldPassword against stored password hash
     const passwordMatch = await bcrypt.compare(oldPasswordHash, storedPasswordHash);

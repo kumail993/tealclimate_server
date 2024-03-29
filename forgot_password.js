@@ -8,6 +8,7 @@ const nodemailer = require('nodemailer');
 router.post('/', async (req, res) => {
   try {
     const { email } = req.body;
+    console.log(email);
 
     // Check if the email already exists in the database
     const checkExistingQuery = 'SELECT * FROM user_credentials WHERE user_email = $1';

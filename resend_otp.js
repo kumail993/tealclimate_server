@@ -1,16 +1,17 @@
 
+
+    
 const express = require('express');
 const router = express.Router();
 const db = require('./db.js');
-const otpGenerator = require("otp-generator");
-const nodemailer = require("nodemailer");
+const otpGenerator = require('otp-generator');
+const bcrypt = require('bcrypt');
+const nodemailer = require('nodemailer');
 
-const app = express();
+router.post('/', async (req, res) => {
 
-router.route('/resendotp').post((req, res) => {
-    // Get params
-    console.log(req.body);
-    var user_email = req.body.user_email;
+    try{
+    var email = req.body.email;
 
     const otp = otpGenerator.generate(6, { digits: true, alphabets: false, upperCaseAlphabets: false, lowerCaseAlphabets: false, specialChars: false });
                 console.log(otp);
@@ -25,8 +26,8 @@ router.route('/resendotp').post((req, res) => {
                 });
                 const mailOptions = {
                     from: "Khaider308@gmail.com",
-                    to: user_email, // Recipient's email
-                    subject: "Your Hostel-hunt Verification Code",
+                    to: email, // Recipient's email
+                    subject: "Your Teal-Climate Verification Code",
                     html: `<html>
                     <head>
                     <style>
@@ -43,7 +44,7 @@ router.route('/resendotp').post((req, res) => {
                         border: 1px solid #ddd;
                       }
                       .header {
-                        color: #0d47a1; /* Dark Blue */
+                        color: #008080; /* Teal */
                         font-size: 24px;
                         margin-bottom: 10px;
                         text-align: center;
@@ -57,7 +58,7 @@ router.route('/resendotp').post((req, res) => {
                       .otp {
                         font-weight: bold;
                         font-size: 28px;
-                        color: #0d47a1; /* Dark Blue */
+                        color: #008080; /* Teal */
                         text-align: center;
                         margin: 20px 0;
                       }
@@ -65,7 +66,7 @@ router.route('/resendotp').post((req, res) => {
                         font-size: 14px;
                         margin-top: 20px;
                         color: white;
-                        background-color: #0d47a1; /* Dark Blue */
+                        background-color: #008080; /* Teal */
                         padding: 10px;
                         text-align: center;
                       }
@@ -75,7 +76,8 @@ router.route('/resendotp').post((req, res) => {
                     <div class="container">
                       <div class="header">Verification Email</div>
                       <div class="info">
-                        We're delighted to welcome you to our Hostel-hunt community.
+                        Hello, ${email}!<br>
+                        We're delighted to welcome you to our TealClimate community.
                       </div>
                       <div class="otp">${otp}</div>
                       <div class="info">
@@ -83,7 +85,7 @@ router.route('/resendotp').post((req, res) => {
                       </div>
                       <div class="footer">
                         Best regards,<br>
-                        The Hostel-hunt Team
+                        The Teal-Climate Team
                       </div>
                     </div>
                   </body>
@@ -100,17 +102,17 @@ router.route('/resendotp').post((req, res) => {
                     }
                 })
 
-    const query = 'UPDATE wp_users SET otp = ? WHERE user_email =?'
+                const updateOtpQuery = 'UPDATE user_credentials SET otp = $1 WHERE user_email = $2';
+                await db.query(updateOtpQuery, [otp, email]);
+            
+                res.status(200).json({ success: true, message: 'OTP sent successfully' });
+              } catch (error) {
+                console.error('Error sending OTP:', error);
+                res.status(500).json({ success: false, message: 'Error sending OTP' });
+              }
 
-    db.query(query,[otp,user_email,], function (error, result, ){
-
-            if(error){
-                console.error("Error Sending OTP", error);
-                 res.status(500).json({ success: false, message: 'Error Updating otp' });
-            }
-            res.status(201).json({ success: true, message: 'OTP updated successfully successful' });
-
-    });
 });
 
 module.exports = router;
+
+    

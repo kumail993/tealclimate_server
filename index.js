@@ -56,6 +56,7 @@ const UpdateCarRouter = require('./update_car.js');
 const ChangePasswordRouter = require('./change_password.js');
 const ForgotPassowrdRouter = require('./forgot_password.js');
 const ForgotChangePasswordRouter = require('./forgetpassword_changepassword.js');
+const ResendOtpRouter = require('./resend_otp.js');
 
 
 
@@ -108,6 +109,7 @@ app.use('/tealclimate/updateCar',UpdateCarRouter);
 app.use('/tealclimate/changePassword',ChangePasswordRouter);
 app.use('/tealclimate/forgotPassword',ForgotPassowrdRouter);
 app.use('/tealclimate/forgotChangePassword',ForgotChangePasswordRouter);
+app.use('/tealclimate/resendOtp',ResendOtpRouter);
 
 
 app.listen(process.env.DB_PORT,()=> console.log('your server is running on port + '+process.env.DB_PORT))

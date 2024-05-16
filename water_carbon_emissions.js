@@ -3,18 +3,18 @@ const router = express.Router();
 const db = require('./db.js');
 
 router.post('/', async (req, res) => {
-    
+
     try {
 
         const quantity = req.body.quantity;
-        const userid=req.body.userid;
-        const uom= req.body.uom;
-       const  month=req.body.month;
-        const year=req.body.year;
-       
+        const userid = req.body.userid;
+        const uom = req.body.uom;
+        const month = req.body.month;
+        const year = req.body.year;
+
         const query1 = 'SELECT * FROM users WHERE login_id = $1';
         const values1 = [userid];
-       
+
 
         const query2 = 'SELECT * FROM property WHERE login_id = $1';
         const values2 = [userid];
@@ -27,16 +27,16 @@ router.post('/', async (req, res) => {
 
         ]);
 
-        const data1 = result1.rows[0];   
-        username=data1.user_name;
+        const data1 = result1.rows[0];
+        username = data1.user_name;
 
-        const data2 = result2.rows[0];   
+        const data2 = result2.rows[0];
 
-        country=data2.country
-        region=data2.state
+        country = data2.country
+        region = data2.state
 
-      
-        placeholder='' 
+
+        placeholder = ''
         const query = 'SELECT * FROM water_database WHERE uom = $1';
         const values = [uom];
 
@@ -46,26 +46,26 @@ router.post('/', async (req, res) => {
                 return res.status(500).send('Error fetching water_database data');
             } else {
 
-                // // The query was successful, and the result is available in the 'result' object.
+                // The query was successful, and the result is available in the 'result' object.
                 const datas = result.rows[0];
-                scope=datas.scope;
-                category='household';
+                scope = datas.scope;
+                category = 'household';
                 mid_category = "water"
-                sub_category=datas.category;
-                stage=datas.stage;
-                ghgunit=datas.ghgunit;
-                placeholder=datas.placeholder;
-                ghg_conversion_factor=datas.ghg_conversion_factor;
+                sub_category = datas.category;
+                stage = datas.stage;
+                ghgunit = datas.ghgunit;
+                placeholder = datas.placeholder;
+                ghg_conversion_factor = datas.ghg_conversion_factor;
 
 
-                const kgco2e=datas.ghg_conversion_factor * quantity
-                console.log('hello',datas);
+                const kgco2e = datas.ghg_conversion_factor * quantity
+                console.log('hello', datas);
 
-                console.log('hello',kgco2e);
+                console.log('hello', kgco2e);
                 // sub_category,
                 const insertQuery = 'INSERT INTO carbon_emissions (scope,category,mid_category,sub_category,stage,country,region,placeholder,uom,ghgunit,ghg_conversion_factor,kgco2e,login_id,user_name,month,year) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16)';
 
-                const insertValues = [scope,category,mid_category,sub_category,stage,country,region,placeholder,uom,ghgunit,ghg_conversion_factor,kgco2e,userid,username,month,year];
+                const insertValues = [scope, category, mid_category, sub_category, stage, country, region, placeholder, uom, ghgunit, ghg_conversion_factor, kgco2e, userid, username, month, year];
 
                 db.query(insertQuery, insertValues, (insertError, insertResult) => {
                     if (insertError) {
@@ -73,8 +73,8 @@ router.post('/', async (req, res) => {
                         // return res.status(500).send('Error inserting kgco2e data');
                     } else {
                         // The INSERT query was successful.
-                        console.log('kgco2e data inserted successfully and emission is: '+kgco2e);
-                        res.status(200).json({ success: true, kgco2e:kgco2e});
+                        console.log('kgco2e data inserted successfully and emission is: ' + kgco2e);
+                        res.status(200).json({ success: true, kgco2e: kgco2e });
 
                     }
                 });
@@ -88,7 +88,7 @@ router.post('/', async (req, res) => {
         console.error('Error executing queries:', error);
         return res.status(500).send('Error fetching data from database');
     } finally {
-        
+
     }
 
 });

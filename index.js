@@ -1,13 +1,13 @@
 
-const express=require('express');
-const app=express();
-var bodyParser=require('body-parser');
-var db=require('./db.js')
+const express = require('express');
+const app = express();
+var bodyParser = require('body-parser');
+var db = require('./db.js')
 
 app.use(express.json());
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
-const RegisterRouter=require('./Register.js');
+const RegisterRouter = require('./Register.js');
 const LoginRouter = require('./login');
 const OTPVerificationRouter = require('./OTP_verification.js');
 const CompletePRofileRouter = require('./complete_profile.js');
@@ -57,60 +57,85 @@ const ChangePasswordRouter = require('./change_password.js');
 const ForgotPassowrdRouter = require('./forgot_password.js');
 const ForgotChangePasswordRouter = require('./forgetpassword_changepassword.js');
 const ResendOtpRouter = require('./resend_otp.js');
+const WaterCarbonExtended = require('./water_carbom_emission_extended.js');
+const AirlineCarbonExtended = require('./airline_carbon_emission_extended.js');
+const BusCarbonExtended = require('./bus_carbon_emission_extended.js');
 
 
 
-app.use('/tealclimate/register',RegisterRouter);
-app.use('/tealclimate/otp',OTPVerificationRouter);
-app.use('/tealclimate/login',LoginRouter);
-app.use('/tealclimate/completeprofile',CompletePRofileRouter);
-app.use('/tealclimate/property',FetchPropertyRouter);
-app.use('/tealclimate/user',FetchUserRouter);
-app.use('/tealclimate/electricity',ElectricityEmissionRouter);
-app.use('/tealclimate/carModels',CarModelRouter);
-app.use('/tealclimate/carMake',CarMakeRouter);
-app.use('/tealclimate/carModel',CarModelNameRouter);
-app.use('/tealclimate/carEngine',CarEngineSizeRouter);
-app.use('/tealclimate/carTransmissions',CarTrnasmissionseRouter);
-app.use('/tealclimate/carFuel',CarFuelTypeRouter);
-app.use('/tealclimate/country',CountryRouter);
-app.use('/tealclimate/region',RegionRouter);
-app.use('/tealclimate/fetchUserCars',UserCarsRouter);
-app.use('/tealclimate/fetchVacationCountries',FetchVacationCountriesRouter);
-app.use('/tealclimate/carCarbonEmission',CarCarbonEmissiosRouter);
-app.use('/tealclimate/passengerType',PassengerTypeRouter);
-app.use('/tealclimate/railType',RailTypeRouter);
-app.use('/tealclimate/heatAndSteam',HeatAndSteamCarbonEmissionsRouter);
-app.use('/tealclimate/water',WaterCarbonEmissionsRouter);
-app.use('/tealclimate/hotelStay',HotelStayEmissionsRouter);
-app.use('/tealclimate/ferry',FerryEmissionsRouter);
-app.use('/tealclimate/mealCategories',MealCategoriesRouter);
-app.use('/tealclimate/rail',RailEmissionRouter);
-app.use('/tealclimate/meal',MeallEmissionRouter);
-app.use('/tealclimate/bus',BusEmissionRouter);
-app.use('/tealclimate/busTypes',BusTypesRouter);
-app.use('/tealclimate/carClassification',RentalCarsTypesRouter);
-app.use('/tealclimate/carTypes',RentalCarStagesRouter);
-app.use('/tealclimate/carFuel',RentalCarFuelRouter);
-app.use('/tealclimate/rentalCar',RentalCarEmissionRouter);
-app.use('/tealclimate/taxi',TaxiEmissionRouter);
-app.use('/tealclimate/airport',FetchAirportsRouter);
-app.use('/tealclimate/airlineClass',FetchAirlineClassRouter);
-app.use('/tealclimate/gas',GsCarbonEmissionRouter);
-app.use('/tealclimate/airline',AirlineEmissionRouter);
-app.use('/tealclimate/totalGHG',TotalGHGEmissionRouter);
-app.use('/tealclimate/scopeGHG',ScopeGHGEmissionRouter);
-app.use('/tealclimate/vacationGHG',VacationGHGEmissionRouter);
-app.use('/tealclimate/householdGHG',HouseholdGHGEmissionRouter);
-app.use('/tealclimate/monthsGHG',MonthsGHGEmissionRouter);
-app.use('/tealclimate/carDetails',UserCarsDetailsDetails);
-app.use('/tealclimate/updateProperty',UpdatePropertyRouter);
-app.use('/tealclimate/updateCar',UpdateCarRouter);
-app.use('/tealclimate/changePassword',ChangePasswordRouter);
-app.use('/tealclimate/forgotPassword',ForgotPassowrdRouter);
-app.use('/tealclimate/forgotChangePassword',ForgotChangePasswordRouter);
-app.use('/tealclimate/resendOtp',ResendOtpRouter);
+app.use('/tealclimate/register', RegisterRouter);
+app.use('/tealclimate/otp', OTPVerificationRouter);
+app.use('/tealclimate/login', LoginRouter);
+app.use('/tealclimate/completeprofile', CompletePRofileRouter);
+app.use('/tealclimate/property', FetchPropertyRouter);
+app.use('/tealclimate/user', FetchUserRouter);
+app.use('/tealclimate/electricity', ElectricityEmissionRouter);
+app.use('/tealclimate/carModels', CarModelRouter);
+app.use('/tealclimate/carMake', CarMakeRouter);
+app.use('/tealclimate/carModel', CarModelNameRouter);
+app.use('/tealclimate/carEngine', CarEngineSizeRouter);
+app.use('/tealclimate/carTransmissions', CarTrnasmissionseRouter);
+app.use('/tealclimate/carFuel', CarFuelTypeRouter);
+app.use('/tealclimate/country', CountryRouter);
+app.use('/tealclimate/region', RegionRouter);
+app.use('/tealclimate/fetchUserCars', UserCarsRouter);
+app.use('/tealclimate/fetchVacationCountries', FetchVacationCountriesRouter);
+app.use('/tealclimate/carCarbonEmission', CarCarbonEmissiosRouter);
+app.use('/tealclimate/passengerType', PassengerTypeRouter);
+app.use('/tealclimate/railType', RailTypeRouter);
+app.use('/tealclimate/heatAndSteam', HeatAndSteamCarbonEmissionsRouter);
+app.use('/tealclimate/water', WaterCarbonEmissionsRouter);
+app.use('/tealclimate/hotelStay', HotelStayEmissionsRouter);
+app.use('/tealclimate/ferry', FerryEmissionsRouter);
+app.use('/tealclimate/mealCategories', MealCategoriesRouter);
+app.use('/tealclimate/rail', RailEmissionRouter);
+app.use('/tealclimate/meal', MeallEmissionRouter);
+app.use('/tealclimate/bus', BusEmissionRouter);
+app.use('/tealclimate/busTypes', BusTypesRouter);
+app.use('/tealclimate/carClassification', RentalCarsTypesRouter);
+app.use('/tealclimate/carTypes', RentalCarStagesRouter);
+app.use('/tealclimate/carFuel', RentalCarFuelRouter);
+app.use('/tealclimate/rentalCar', RentalCarEmissionRouter);
+app.use('/tealclimate/taxi', TaxiEmissionRouter);
+app.use('/tealclimate/airport', FetchAirportsRouter);
+app.use('/tealclimate/airlineClass', FetchAirlineClassRouter);
+app.use('/tealclimate/gas', GsCarbonEmissionRouter);
+app.use('/tealclimate/airline', AirlineEmissionRouter);
+app.use('/tealclimate/totalGHG', TotalGHGEmissionRouter);
+app.use('/tealclimate/scopeGHG', ScopeGHGEmissionRouter);
+app.use('/tealclimate/vacationGHG', VacationGHGEmissionRouter);
+app.use('/tealclimate/householdGHG', HouseholdGHGEmissionRouter);
+app.use('/tealclimate/monthsGHG', MonthsGHGEmissionRouter);
+app.use('/tealclimate/carDetails', UserCarsDetailsDetails);
+app.use('/tealclimate/updateProperty', UpdatePropertyRouter);
+app.use('/tealclimate/updateCar', UpdateCarRouter);
+app.use('/tealclimate/changePassword', ChangePasswordRouter);
+app.use('/tealclimate/forgotPassword', ForgotPassowrdRouter);
+app.use('/tealclimate/forgotChangePassword', ForgotChangePasswordRouter);
+app.use('/tealclimate/resendOtp', ResendOtpRouter);
+
+// ------------------------------> New API's <-------------------------------------- //
+// Water Carbon Emission
+app.use('/tealclimate/fetchAllWaterCarbon', WaterCarbonExtended.getAllWaterCarbon);
+app.use('/tealclimate/deleteWaterCarbon', WaterCarbonExtended.deleteWaterCarbon);
+
+// Delete Airline Emission
+app.use('/tealclimate/getAirlineEmission', AirlineCarbonExtended.getAirlineCarbon);
+app.use('/tealclimate/deleteAirlineEmission', AirlineCarbonExtended.deleteAirlineCarbon);
+
+// Bus Carbon Emission
+app.use('/tealclimate/deleteBusEmission', BusCarbonExtended.deleteBusCarbon);
+app.use('/tealclimate/fetchAllBusEmission', BusCarbonExtended.getBusCarbon);
 
 
-app.listen(process.env.DB_PORT,()=> console.log('your server is running on port + '+process.env.DB_PORT))
+
+app.get('/', (req, res) => {
+    res.json({
+        Status: 200,
+        message: 'Server Working',
+    });
+})
+
+
+app.listen(process.env.DB_PORT, () => { console.log('your server is running on port + ' + process.env.DB_PORT,) })
 
